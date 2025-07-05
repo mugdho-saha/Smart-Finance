@@ -40,6 +40,9 @@
             <li>
                 <a href="{{route('dashboard')}}"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
             </li>
+            <li>
+                <a href="{{route('category.index')}}"> <i data-feather="grid" class="align-self-center menu-icon"></i><span>Category</span></a>
+            </li>
         </ul>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,9 +11,15 @@ Route::get('/', function () {
 
 Route::get('/starter', function () {return view('layouts/starter');});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Routes that require authentication
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+});
 
 
 Route::middleware('auth')->group(function () {

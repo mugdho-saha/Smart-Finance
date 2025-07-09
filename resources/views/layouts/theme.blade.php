@@ -24,13 +24,9 @@
 <div class="left-sidenav">
     <!-- LOGO -->
     <div class="brand">
-        <a class='logo' href='index.html'>
+        <a class='logo' href='{{route('dashboard')}}'>
                     <span>
-                        <img src="assets/images/logo-sm.png" alt="logo-small" class="logo-sm">
-                    </span>
-            <span>
-                        <img src="assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                        <img src="assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark">
+                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">
                     </span>
         </a>
     </div>
@@ -41,7 +37,12 @@
                 <a href="{{route('dashboard')}}"> <i data-feather="home" class="align-self-center menu-icon"></i><span>Dashboard</span></a>
             </li>
             <li>
-                <a href="{{route('category.index')}}"> <i data-feather="grid" class="align-self-center menu-icon"></i><span>Category</span></a>
+                <a href="{{route('category.index')}}"> <i data-feather="grid"
+                                                          class="align-self-center menu-icon"></i><span>Category</span></a>
+            </li>
+            <li>
+                <a href="{{route('subcategory.index')}}"> <i data-feather="grid"
+                                                          class="align-self-center menu-icon"></i><span>Sub-Category</span></a>
             </li>
         </ul>
     </div>
@@ -61,7 +62,7 @@
                        href="#" role="button"
                        aria-haspopup="false" aria-expanded="false">
                         <span class="ms-1 nav-user-name hidden-sm">{{ Auth::user()->name }}</span>
-                        <img src="assets/images/users/user-5.jpg" alt="profile-user" class="rounded-circle thumb-xs"/>
+                        <img src="{{asset('assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-xs"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class='dropdown-item' href='/profile'><i data-feather="user"

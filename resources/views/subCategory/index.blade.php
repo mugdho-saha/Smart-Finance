@@ -82,7 +82,7 @@
                                             <td>{{ $subcategory->sub_cat_name }}</td>
                                             <td>{{ $subcategory->category->cat_name }}</td>
                                             <td class="text-end">
-                                                <a href="{{route('category.edit',$subcategory->slug)}}"><i
+                                                <a href="{{route('subcategory.edit',$subcategory->slug)}}"><i
                                                         class="las la-pen text-warning font-16"></i></a>
                                                 <form action="{{ route('subcategory.destroy', $subcategory->sub_cat_id) }}"
                                                       method="POST" style="display: inline;">

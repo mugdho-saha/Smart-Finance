@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/subcategory', [SubCategoryController::class, 'index'])->name('subcategory.index');
     Route::post('/subcategory', [SubCategoryController::class, 'store'])->name('subcategory.store');
     Route::delete('/subcategory/{subcategory}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
+    Route::get('/subcategory/edit/{slug}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::put('/subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
 
 });
 

@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id('sub_cat_id');
-            $table->BigInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('sub_cat_name')->unique();
             $table->string('slug')->unique();
             $table->timestamps();
-            $table->foreign('category_id')->references('cat_id')->on('category');
+
+            $table->foreign('category_id')->references('cat_id')->on('categories')->onDelete('cascade');
         });
+
     }
 
     /**

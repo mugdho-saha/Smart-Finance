@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/subcategory/{subcategory}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
     Route::get('/subcategory/edit/{slug}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
     Route::put('/subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+
+    /*income routes*/
+    Route::get('/income', [IncomeController::class, 'index'])->name('income.index');
+    Route::get('/get-subcategories', [IncomeController::class, 'getSubCategories'])->name('get.subcategories');
+    Route::post('/income', [IncomeController::class, 'store'])->name('income.store');
+    Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
 
 });
 

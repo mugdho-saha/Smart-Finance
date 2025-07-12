@@ -18,6 +18,8 @@
     <link href="{{ asset('assets/css/metisMenu.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- jQuery -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 </head>
 <body>
 <!-- Left Sidenav -->
@@ -43,6 +45,10 @@
             <li>
                 <a href="{{route('subcategory.index')}}"> <i data-feather="grid"
                                                           class="align-self-center menu-icon"></i><span>Sub-Category</span></a>
+            </li>
+            <li>
+                <a href="{{route('income.index')}}"> <i data-feather="grid"
+                                                             class="align-self-center menu-icon"></i><span>Income</span></a>
             </li>
         </ul>
     </div>
@@ -118,8 +124,7 @@
 <!-- end page-wrapper -->
 
 
-<!-- jQuery -->
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/metismenu.min.js') }}"></script>
 <script src="{{ asset('assets/js/waves.js') }}"></script>

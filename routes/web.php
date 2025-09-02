@@ -1,11 +1,12 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+
 
 
 Route::get('/', function () {
@@ -16,10 +17,7 @@ Route::get('/starter', function () {return view('layouts/starter');});
 
 // Routes that require authentication
 Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     /*category routes*/
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

@@ -91,7 +91,7 @@
                                                     <tr>
                                                         <td>{{ $i++ }}</td>
                                                         <td>{{ $income->note }}</td>
-                                                        <td>{{ $income->amount }}</td>
+                                                        <td>{{ bd_money_format($income->amount) }}</td>
                                                         <td>{{ $income->created_at->format('d F, Y') }}</td>
                                                         <td>{{ $income->category->cat_name }}</td>
                                                         <td>{{ $income->subCategory->sub_cat_name }}</td>

@@ -33,7 +33,7 @@ class IncomeController extends Controller
             'note' => 'nullable',
         ]);
         Income::create($validated);
-        return redirect()->route('income.index')->with('success', 'Income added successfully');
+        return redirect()->back()->with('success', 'Income added successfully');
     }
 
     public function destroy($income_id){

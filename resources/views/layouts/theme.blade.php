@@ -45,16 +45,16 @@
             </li>
             <li>
                 <a href="{{route('subcategory.index')}}"> <i data-feather="grid"
-                                                          class="align-self-center menu-icon"></i><span>Sub-Category</span></a>
+                                                             class="align-self-center menu-icon"></i><span>Sub-Category</span></a>
             </li>
             <li>
                 <a href="{{route('income.index')}}"> <i data-feather="grid"
-                                                             class="align-self-center menu-icon"></i><span>Income</span></a>
+                                                        class="align-self-center menu-icon"></i><span>Income</span></a>
             </li>
 
             <li>
                 <a href="{{route('expense.index')}}"> <i data-feather="grid"
-                                                        class="align-self-center menu-icon"></i><span>Expense</span></a>
+                                                         class="align-self-center menu-icon"></i><span>Expense</span></a>
             </li>
         </ul>
     </div>
@@ -74,7 +74,8 @@
                        href="#" role="button"
                        aria-haspopup="false" aria-expanded="false">
                         <span class="ms-1 nav-user-name hidden-sm">{{ Auth::user()->name }}</span>
-                        <img src="{{asset('assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-xs"/>
+                        <img src="{{asset('assets/images/users/user-5.jpg')}}" alt="profile-user"
+                             class="rounded-circle thumb-xs"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class='dropdown-item' href='/profile'><i data-feather="user"
@@ -101,8 +102,144 @@
                 </li>
                 <li class="creat-btn">
                     <div class="nav-link">
-                        <a class=" btn btn-sm btn-soft-primary" href="#" role="button"><i class="fas fa-plus me-2"></i>New
-                            Task</a>
+                        <button type="button" class=" btn btn-sm btn-soft-danger" data-bs-toggle="modal"
+                                data-bs-target="#expenseModal"><i class="fas fa-plus me-2"></i>
+                            Add New Expense
+                        </button>
+                        {{--modal start--}}
+                        <div class="modal fade" id="expenseModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Add New Expense</h6>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <!--end modal-header-->
+
+                                    {{--Add expense form--}}
+                                    <form action="{{route('expense.store')}}" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="exampleInputEmail1">Amount</label>
+                                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                                               placeholder="Amount" name="amount" autocomplete="off"
+                                                               required>
+                                                    </div>
+                                                    <!-- Category Dropdown -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="category">Select Category</label>
+                                                        <select class="form-select" id="categoryGlobal" name="cat_id" required>
+                                                            <option value="" selected disabled>Select Category</option>
+                                                            {{--global variable created in AppServiceProvider--}}
+                                                            @foreach($global_categories as $category)
+                                                                <option value="{{ $category->cat_id }}">{{ $category->cat_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Sub-Category Dropdown -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="subcategoryGlobal">Select Sub Category</label>
+                                                        <select class="form-select" id="subcategoryGlobal" name="sub_cat_id" required>
+                                                            <option value="" selected disabled>Select Sub Category</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="floatingTextarea2">Note</label>
+                                                        <textarea class="form-control" name="note" placeholder="Note" id="floatingTextarea2" style="height: 100px"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div><!--end row-->
+                                        </div><!--end modal-body-->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-soft-primary btn-sm">Add Expense</button>
+                                            <button type="button" class="btn btn-soft-secondary btn-sm"
+                                                    data-bs-dismiss="modal">Close
+                                            </button>
+                                        </div><!--end modal-footer-->
+                                    </form>
+
+                                </div><!--end modal-content-->
+                            </div><!--end modal-dialog-->
+                        </div>
+                        {{--modal ends--}}
+                    </div>
+                </li>
+                <li class="creat-btn">
+                    <div class="nav-link">
+                        <button type="button" class=" btn btn-sm btn-soft-primary" data-bs-toggle="modal"
+                                data-bs-target="#incomeModal"><i class="fas fa-plus me-2"></i>
+                            Add New Income
+                        </button>
+                        {{--modal start--}}
+                        <div class="modal fade" id="incomeModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalDefaultLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title m-0" id="exampleModalDefaultLabel">Add New Income</h6>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <!--end modal-header-->
+
+                                    {{--Add expense form--}}
+                                    <form action="{{route('income.store')}}" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="exampleInputEmail1">Amount</label>
+                                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                                               placeholder="Amount" name="amount" autocomplete="off"
+                                                               required>
+                                                    </div>
+                                                    <!-- Category Dropdown -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="category">Select Category</label>
+                                                        <select class="form-select" id="categoryGlobal_i" name="cat_id" required>
+                                                            <option value="" selected disabled>Select Category</option>
+                                                            {{--global variable created in AppServiceProvider--}}
+                                                            @foreach($global_categories as $category)
+                                                                <option value="{{ $category->cat_id }}">{{ $category->cat_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <!-- Sub-Category Dropdown -->
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="subcategoryGlobal_i">Select Sub Category</label>
+                                                        <select class="form-select" id="subcategoryGlobal_i" name="sub_cat_id" required>
+                                                            <option value="" selected disabled>Select Sub Category</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="floatingTextarea2">Note</label>
+                                                        <textarea class="form-control" name="note" placeholder="Note" id="floatingTextarea2" style="height: 100px"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div><!--end row-->
+                                        </div><!--end modal-body-->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-soft-primary btn-sm">Add Income</button>
+                                            <button type="button" class="btn btn-soft-secondary btn-sm"
+                                                    data-bs-dismiss="modal">Close
+                                            </button>
+                                        </div><!--end modal-footer-->
+                                    </form>
+
+                                </div><!--end modal-content-->
+                            </div><!--end modal-dialog-->
+                        </div>
+                        {{--modal ends--}}
                     </div>
                 </li>
             </ul>
@@ -130,7 +267,6 @@
 <!-- end page-wrapper -->
 
 
-
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/js/metismenu.min.js') }}"></script>
 <script src="{{ asset('assets/js/waves.js') }}"></script>
@@ -141,6 +277,59 @@
 
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('#categoryGlobal').on('change', function () {
+            var categoryId = $(this).val();
 
+            $('#subcategoryGlobal').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: "{{ route('get.subcategories') }}",
+                type: "GET",
+                data: {
+                    category_id: categoryId
+                },
+                success: function (data) {
+                    $('#subcategoryGlobal').empty();
+                    $('#subcategoryGlobal').append('<option value="" disabled selected>Select Sub Category</option>');
+                    $.each(data, function (index, subcategory) {
+                        $('#subcategoryGlobal').append('<option value="' + subcategory.sub_cat_id + '">' + subcategory.sub_cat_name + '</option>');
+                    });
+                },
+                error: function () {
+                    $('#subcategoryGlobal').html('<option value="">Failed to load</option>');
+                }
+            });
+        });
+    });
+
+    /*for income*/
+    $(document).ready(function () {
+        $('#categoryGlobal_i').on('change', function () {
+            var categoryId = $(this).val();
+
+            $('#subcategoryGlobal_i').html('<option value="">Loading...</option>');
+
+            $.ajax({
+                url: "{{ route('get.subcategories') }}",
+                type: "GET",
+                data: {
+                    category_id: categoryId
+                },
+                success: function (data) {
+                    $('#subcategoryGlobal_i').empty();
+                    $('#subcategoryGlobal_i').append('<option value="" disabled selected>Select Sub Category</option>');
+                    $.each(data, function (index, subcategory) {
+                        $('#subcategoryGlobal_i').append('<option value="' + subcategory.sub_cat_id + '">' + subcategory.sub_cat_name + '</option>');
+                    });
+                },
+                error: function () {
+                    $('#subcategoryGlobal_i').html('<option value="">Failed to load</option>');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

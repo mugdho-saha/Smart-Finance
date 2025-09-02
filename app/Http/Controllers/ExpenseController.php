@@ -23,7 +23,7 @@ class ExpenseController extends Controller
             'note' => 'nullable',
         ]);
         Expense::create($validated);
-        return redirect()->route('expense.index')->with('success', 'Expense added successfully');
+        return redirect()->back()->with('success', 'Expense added successfully');
     }
 
     public function destroy($expense_id){

@@ -13,6 +13,12 @@
 
                     </div><!--end row-->
                 </div><!--end page-title-box-->
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
             </div><!--end col-->
         </div><!--end row-->
         <!-- end page title end breadcrumb -->
@@ -110,6 +116,18 @@
                             <div class="col">
                                 <p class="text-dark mb-0 fw-semibold">Total Number of Sub-Categories</p>
                                 <h3 class="m-0">{{$total_sub_category}}</h3>
+                            </div>
+                        </div>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div> <!--end col-->
+            <div class="col-md-6 col-lg-3">
+                <div class="card report-card">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <p class="text-dark mb-0 fw-semibold">Remaining Cash</p>
+                                <h3 class="m-0">{{bd_money_format($total_income - $total_expense)}}</h3>
                             </div>
                         </div>
                     </div><!--end card-body-->

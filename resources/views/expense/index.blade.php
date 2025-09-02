@@ -10,7 +10,7 @@
                     <div class="page-title-box">
                         <div class="row">
                             <div class="col">
-                                <h4 class="page-title">Income</h4>
+                                <h4 class="page-title">Expense</h4>
                             </div><!--end col-->
                         </div><!--end row-->
                         <div class="row mt-3">
@@ -23,10 +23,10 @@
                             <div class="col-4">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Add Income</h4>
+                                        <h4 class="card-title">Add Expense</h4>
                                     </div><!--end card-header-->
                                     <div class="card-body">
-                                        <form action="{{route('income.store')}}" method="POST">
+                                        <form action="{{route('expense.store')}}" method="POST">
                                             @csrf
                                             <div class="mb-3">
                                                 <label class="form-label" for="exampleInputEmail1">Amount</label>
@@ -66,7 +66,7 @@
                             <div class="col-8">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Income Entries</h4>
+                                        <h4 class="card-title">Expense Entries</h4>
                                     </div><!--end card-header-->
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -84,21 +84,21 @@
                                                 </thead>
                                                 <tbody>
                                                 @php
-                                                    $i = ($incomes->currentPage() - 1) * $incomes->perPage() + 1;
+                                                    $i = ($expenses->currentPage() - 1) * $expenses->perPage() + 1;
                                                 @endphp
 
-                                                @foreach($incomes as $income)
+                                                @foreach($expenses as $expense)
                                                     <tr>
                                                         <td>{{ $i++ }}</td>
-                                                        <td>{{ $income->note }}</td>
-                                                        <td>{{ $income->amount }}</td>
-                                                        <td>{{ $income->created_at->format('d F, Y') }}</td>
-                                                        <td>{{ $income->category->cat_name }}</td>
-                                                        <td>{{ $income->subCategory->sub_cat_name }}</td>
+                                                        <td>{{ $expense->note }}</td>
+                                                        <td>{{ $expense->amount }}</td>
+                                                        <td>{{ $expense->created_at->format('d F, Y') }}</td>
+                                                        <td>{{ $expense->category->cat_name }}</td>
+                                                        <td>{{ $expense->subCategory->sub_cat_name }}</td>
                                                         <td class="text-end">
-                                                            <a href="{{route('income.edit',$income->income_id)}}"><i
+                                                            <a href="{{route('expense.edit',$expense->expense_id)}}"><i
                                                                     class="las la-pen text-warning font-16"></i></a>
-                                                            <form action="{{ route('income.destroy', $income->income_id) }}"
+                                                            <form action="{{ route('expense.destroy', $expense->expense_id) }}"
                                                                   method="POST" style="display: inline;">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -114,7 +114,7 @@
                                                 </tbody>
                                             </table><!--end /table-->
                                             <div class="mt-2 d-flex align-items-end justify-content-end">
-                                                {{ $incomes->links() }}
+                                                {{ $expenses->links() }}
                                             </div>
                                         </div><!--end /tableresponsive-->
                                     </div><!--end card-body-->

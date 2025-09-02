@@ -50,6 +50,11 @@
                 <a href="{{route('income.index')}}"> <i data-feather="grid"
                                                              class="align-self-center menu-icon"></i><span>Income</span></a>
             </li>
+
+            <li>
+                <a href="{{route('expense.index')}}"> <i data-feather="grid"
+                                                        class="align-self-center menu-icon"></i><span>Expense</span></a>
+            </li>
         </ul>
     </div>
 </div>

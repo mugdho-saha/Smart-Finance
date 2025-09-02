@@ -41,4 +41,23 @@ class IncomeController extends Controller
         $income->delete();
         return redirect()->route('income.index')->with('success', 'Income deleted successfully');
     }
+
+    public function edit($income_id){
+        $categories = Category::all();
+        $income = Income::where('income_id', $income_id)->with('category','subCategory')->firstOrFail();
+        return view('income.edit', compact('categories', 'income'));
+    }
+
+    public function update(Request $request, $income_id){
+        $request->validate([
+            'amount' => 'required',
+            'cat_id' => 'required',
+            'sub_cat_id' => 'required',
+            'note' => 'nullable',
+        ]);
+
+        $income = Income::findOrFail($income_id);
+        $income->update($request->all());
+        return redirect()->route('income.index')->with('success', 'Income updated successfully');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
@@ -39,6 +40,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/get-subcategories', [IncomeController::class, 'getSubCategories'])->name('get.subcategories');
     Route::post('/income', [IncomeController::class, 'store'])->name('income.store');
     Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
+    Route::get('/income/edit/{income_id}', [IncomeController::class, 'edit'])->name('income.edit');
+    Route::put('/income/{income_id}', [IncomeController::class, 'update'])->name('income.update');
+
+    /*expense routes*/
+    Route::get('/expense', [ExpenseController::class, 'index'])->name('expense.index');
+    Route::post('/expense', [ExpenseController::class, 'store'])->name('expense.store');
+    Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
+    Route::get('/expense/edit/{expense_id}', [ExpenseController::class, 'edit'])->name('expense.edit');
+    Route::put('/expense/{expense_id}', [ExpenseController::class, 'update'])->name('expense.update');
 
 });
 

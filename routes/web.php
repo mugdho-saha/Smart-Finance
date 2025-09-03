@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
@@ -45,6 +47,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/expense/{expense}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
     Route::get('/expense/edit/{expense_id}', [ExpenseController::class, 'edit'])->name('expense.edit');
     Route::put('/expense/{expense_id}', [ExpenseController::class, 'update'])->name('expense.update');
+
+    /*report routes*/
+    Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
+    Route::get('/dailyReport', [ReportController::class, 'dailyReport'])->name('dailyReport');
 });
 
 Route::middleware('auth')->group(function () {

@@ -13,118 +13,118 @@
                                 <h4 class="page-title">Income</h4>
                             </div><!--end col-->
                         </div><!--end row-->
-                        <div class="row mt-3">
-                            @if (session('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            @endif
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Add Income</h4>
-                                    </div><!--end card-header-->
-                                    <div class="card-body">
-                                        <form action="{{route('income.store')}}" method="POST">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleInputEmail1">Amount</label>
-                                                <input type="number" class="form-control" id="exampleInputEmail1"
-                                                       placeholder="Amount" name="amount" autocomplete="off"
-                                                       required>
-                                            </div>
-                                            <!-- Category Dropdown -->
-                                            <div class="mb-3">
-                                                <label class="form-label" for="category">Select Category</label>
-                                                <select class="form-select" id="category" name="cat_id" required>
-                                                    <option value="" selected disabled>Select Category</option>
-                                                    @foreach($categories as $category)
-                                                        <option value="{{ $category->cat_id }}">{{ $category->cat_name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                            <!-- Sub-Category Dropdown -->
-                                            <div class="mb-3">
-                                                <label class="form-label" for="subcategory">Select Sub Category</label>
-                                                <select class="form-select" id="subcategory" name="sub_cat_id" required>
-                                                    <option value="" selected disabled>Select Sub Category</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="floatingTextarea2">Note</label>
-                                                <textarea class="form-control" name="note" placeholder="Note" id="floatingTextarea2" style="height: 100px"></textarea>
-                                            </div>
-
-                                            <button type="submit" class="btn btn-primary">Save</button>
-                                        </form>
-                                    </div><!--end card-body-->
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Income Entries</h4>
-                                    </div><!--end card-header-->
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped mb-0">
-                                                <thead>
-                                                <tr>
-                                                    <th>Sl No</th>
-                                                    <th>Note</th>
-                                                    <th>Amount</th>
-                                                    <th>Date</th>
-                                                    <th>Category Name</th>
-                                                    <th>Sub-Category Name</th>
-                                                    <th class="text-end">Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @php
-                                                    $i = ($incomes->currentPage() - 1) * $incomes->perPage() + 1;
-                                                @endphp
-
-                                                @foreach($incomes as $income)
-                                                    <tr>
-                                                        <td>{{ $i++ }}</td>
-                                                        <td>{{ $income->note }}</td>
-                                                        <td>{{ bd_money_format($income->amount) }}</td>
-                                                        <td>{{ $income->created_at->format('d F, Y') }}</td>
-                                                        <td>{{ $income->category->cat_name }}</td>
-                                                        <td>{{ $income->subCategory->sub_cat_name }}</td>
-                                                        <td class="text-end">
-                                                            <a href="{{route('income.edit',$income->income_id)}}"><i
-                                                                    class="las la-pen text-warning font-16"></i></a>
-                                                            <form action="{{ route('income.destroy', $income->income_id) }}"
-                                                                  method="POST" style="display: inline;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                        class="btn btn-link text-danger p-0"
-                                                                        onclick="return confirm('Delete this data permanently?')">
-                                                                    <i class="las la-trash-alt text-danger font-16"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table><!--end /table-->
-                                            <div class="mt-2 d-flex align-items-end justify-content-end">
-                                                {{ $incomes->links() }}
-                                            </div>
-                                        </div><!--end /tableresponsive-->
-                                    </div><!--end card-body-->
-                                </div>
-                            </div>
-                        </div>
                     </div><!--end page-title-box-->
                 </div><!--end col-->
             </div><!--end row-->
             <!-- end page title end breadcrumb -->
+            <div class="row mt-3">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Add Income</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <form action="{{route('income.store')}}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="form-label" for="exampleInputEmail1">Amount</label>
+                                    <input type="number" class="form-control" id="exampleInputEmail1"
+                                           placeholder="Amount" name="amount" autocomplete="off"
+                                           required>
+                                </div>
+                                <!-- Category Dropdown -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="category">Select Category</label>
+                                    <select class="form-select" id="category" name="cat_id" required>
+                                        <option value="" selected disabled>Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->cat_id }}">{{ $category->cat_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <!-- Sub-Category Dropdown -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="subcategory">Select Sub Category</label>
+                                    <select class="form-select" id="subcategory" name="sub_cat_id" required>
+                                        <option value="" selected disabled>Select Sub Category</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="floatingTextarea2">Note</label>
+                                    <textarea class="form-control" name="note" placeholder="Note" id="floatingTextarea2" style="height: 100px"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div><!--end card-body-->
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Income Entries</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Sl No</th>
+                                        <th>Note</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Category Name</th>
+                                        <th>Sub-Category Name</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $i = ($incomes->currentPage() - 1) * $incomes->perPage() + 1;
+                                    @endphp
+
+                                    @foreach($incomes as $income)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $income->note }}</td>
+                                            <td>{{ bd_money_format($income->amount) }}</td>
+                                            <td>{{ $income->created_at->format('d F, Y') }}</td>
+                                            <td>{{ $income->category->cat_name }}</td>
+                                            <td>{{ $income->subCategory->sub_cat_name }}</td>
+                                            <td class="text-end">
+                                                <a href="{{route('income.edit',$income->income_id)}}"><i
+                                                        class="las la-pen text-warning font-16"></i></a>
+                                                <form action="{{ route('income.destroy', $income->income_id) }}"
+                                                      method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                            class="btn btn-link text-danger p-0"
+                                                            onclick="return confirm('Delete this data permanently?')">
+                                                        <i class="las la-trash-alt text-danger font-16"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table><!--end /table-->
+                                <div class="mt-2 d-flex align-items-end justify-content-end">
+                                    {{ $incomes->links() }}
+                                </div>
+                            </div><!--end /tableresponsive-->
+                        </div><!--end card-body-->
+                    </div>
+                </div>
+            </div>
 
 
         </div><!-- container -->

@@ -56,6 +56,10 @@
                 <a href="{{route('expense.index')}}"> <i data-feather="grid"
                                                          class="align-self-center menu-icon"></i><span>Expense</span></a>
             </li>
+            <li>
+                <a href="{{route('report.index')}}"> <i data-feather="grid"
+                                                         class="align-self-center menu-icon"></i><span>Reports</span></a>
+            </li>
         </ul>
     </div>
 </div>

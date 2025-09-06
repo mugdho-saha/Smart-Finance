@@ -51,6 +51,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /*report routes*/
     Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
     Route::get('/dailyReport', [ReportController::class, 'dailyReport'])->name('dailyReport');
+    Route::post('/monthlyReport', [ReportController::class, 'monthlyReport'])->name('monthlyReport');
 });
 
 Route::middleware('auth')->group(function () {

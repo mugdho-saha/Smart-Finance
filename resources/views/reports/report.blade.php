@@ -45,17 +45,26 @@
     {{-- Header --}}
     <div class="d-flex justify-content-between align-items-start mb-3">
         <div>
-            <h1 class="h3 mb-1">Daily Report</h1>
+            <h1 class="h3 mb-1">
+                @if($type == 'daily')
+                    Daily Report
+                @elseif($type == 'monthly')
+                    Datewise Report
+                @endif
+            </h1>
             <div class="text-muted small">
-                {{--@if(!empty($fromDate) || !empty($toDate))
+                @if(!empty($fromDate) || !empty($toDate))
                     Date Range:
                     {{ $fromDate ? \Illuminate\Support\Carbon::parse($fromDate)->format('d M Y') : '—' }}
                     —
                     {{ $toDate ? \Illuminate\Support\Carbon::parse($toDate)->format('d M Y') : '—' }}
                     &middot;
-                @endif--}}
-                Date: {{ now()->format('d M Y') }} |
-                Generated: {{ now()->format('d M Y, h:i A') }}
+                @endif
+
+                @if($type == 'daily')
+                    Date: {{ now()->format('d M Y') }}
+                @endif
+                | Generated: {{ now()->format('d M Y, h:i A') }}
             </div>
         </div>
 
